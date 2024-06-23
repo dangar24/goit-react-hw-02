@@ -17,7 +17,7 @@ export default function App() {
     }
   })
 
-  const PositivePer = Math.floor((reviews.good/(reviews.good+reviews.bad))*100)
+  const PositivePer = Math.floor((reviews.good / (reviews.good + reviews.neutral + reviews.bad)) * 100) || 0;
 
   useEffect(() => {
     localStorage.setItem('dataReviews', JSON.stringify(reviews))
