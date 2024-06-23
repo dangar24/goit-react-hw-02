@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import Description from './components/Description/Description'
 import Options from './components/Options/Options'
 import Feedback from './Feedback/Feedback'
+import Notification from './components/Notification/Notification'
 
 export default function App() {
   
@@ -15,6 +16,8 @@ export default function App() {
     bad: 0
     }
   })
+
+  const PositivePer = Math.floor((reviews.good/(reviews.good+reviews.bad))*100)
 
   useEffect(() => {
     localStorage.setItem('dataReviews', JSON.stringify(reviews))
@@ -43,7 +46,7 @@ export default function App() {
       resetFeedback={reset}
       totalFeedback={totalFeedback}
       updateFeedback={updateFeedback} />
-    {totalFeedback>0 ? <Feedback totalFeedback={totalFeedback} data={reviews}/> : <p>No feedback yet</p>}
+    {totalFeedback>0 ? <Feedback PositivePer={PositivePer} totalFeedback={totalFeedback} data={reviews}/> : <Notification />}
   </> 
 }
 
